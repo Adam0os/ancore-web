@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zásady ochrany osobních údajů – ANCORE</title>
+  <meta name="description" content="Jaké údaje aplikace ANCORE zpracovává, kde leží, komu jdou a jak je smazat.">
+  <link rel="stylesheet" href="styl.css">
+</head>
+<body>
+<main>
+  <header>
+    <a href="index.html">ANCORE</a>
+    <h1>Zásady ochrany osobních údajů</h1>
+    <p class="muted">Platné od 6. 10. 2026 · aplikace ANCORE pro Android a iPhone</p>
+  </header>
+
+  <p>ANCORE je aplikace pro osobní rozvoj. Většina dat zůstává jen ve tvém telefonu.
+    Do cloudu jdou jen tehdy, když se přihlásíš k účtu, a k dalším službám jen
+    tehdy, když je sám propojíš. Aplikace nezobrazuje reklamy, data neprodává
+    a nesleduje tě kvůli marketingu.</p>
+
+  <h2>Kdo údaje zpracovává</h2>
+  <p>Správcem je <strong>Adam Nechvátal</strong>, vývojář aplikace ANCORE (fyzická osoba). Kontakt pro všechny dotazy
+    a žádosti: <a href="mailto:adamn.developer@gmail.com">adamn.developer@gmail.com</a>.</p>
+
+  <h2>Co aplikace uchovává v telefonu</h2>
+  <p>Všechno, co do aplikace zadáš nebo propojíš:</p>
+  <ul>
+    <li><strong>Finance</strong> – platby (datum, částka, popis, protistrana, číslo účtu), oblasti výdajů, semestry.</li>
+    <li><strong>Zdraví a fitness</strong> – tréninky, plány a cviky; z Health Connect (Android) nebo Apple Zdraví (iPhone) délka tréninku, kalorie, vzdálenost, tep, převýšení, kroky, kadence, výkon a trasa GPS. Aplikace zdravotní data jen čte, nikdy nezapisuje.
+      Slouží výhradně k zobrazení tvých tréninků v aplikaci – nepoužívají se k reklamě, neprodávají se
+      a nikomu se nepředávají; do cloudu jdou jen se synchronizací tvého vlastního účtu.</li>
+    <li><strong>Osobní záznamy</strong> – návyky, odpočty „Since", úkoly, citáty, text Nového Já a denní sebereflexe.</li>
+    <li><strong>Přístupové údaje</strong> – API token banky, jméno a heslo ke kontu ISKAM a jeho přihlašovací cookie, API klíč k AI, vlastní čísla účtů a oprávnění ke Google Kalendáři. Jsou <strong>zašifrované</strong> klíčem z úložiště klíčů telefonu (Android Keystore, Secure Enclave), který zařízení neopustí.</li>
+  </ul>
+  <p>Zálohování do cloudu systému i přenos do nového telefonu jsou pro data aplikace
+    vypnuté. Soubor zálohy z Profilu vzniká jen na tvůj pokyn a přístupové údaje neobsahuje.</p>
+
+  <h2>Co jde do cloudu (jen s účtem)</h2>
+  <p>Když se přihlásíš e-mailem a heslem nebo účtem Google, synchronizují se data
+    z předchozí kapitoly <strong>kromě přístupových údajů a čísel účtů</strong>. Ty zůstávají jen v telefonu.
+    Data ukládá služba Google Firebase (Cloud Firestore, umístění <strong>eur3 – Evropská unie</strong>)
+    a přístup k nim má jen tvůj účet. Firebase Authentication eviduje tvůj e-mail, heslo (v podobě,
+    ze které ho nejde přečíst) nebo identitu účtu Google.</p>
+
+  <h2>Služby, se kterými aplikace komunikuje</h2>
+  <table>
+    <thead><tr><th>Služba</th><th>Kdy</th><th>Co se předává</th></tr></thead>
+    <tbody>
+      <tr><td>Google Firebase (Authentication, Cloud Firestore)</td><td>Jen s účtem</td><td>Přihlašovací údaje a synchronizovaná data – viz výše.</td></tr>
+      <tr><td>Firebase Crashlytics (Android)</td><td>Když aplikace spadne</td><td>Název chyby a místo v kódu, model telefonu, verze systému a aplikace, volné místo, náhodné id instalace. Zprávy chyb se před odesláním mažou, takže hlášení neobsahují tvoje data. Na iPhonu se hlášení o pádu jen uloží v telefonu a odešleš ho sám.</td></tr>
+      <tr><td>Firebase App Check / Google Play Integrity (Android)</td><td>Se synchronizací</td><td>Ověření, že požadavek přichází z pravé aplikace na nezměněném telefonu.</td></tr>
+      <tr><td>Fio banka (API)</td><td>Když v Profilu zadáš token</td><td>Tvůj token; banka vrátí pohyby na účtu.</td></tr>
+      <tr><td>Západočeská univerzita – ISKAM</td><td>Když zadáš přihlášení ke kontu</td><td>Tvoje jméno a heslo (přímo univerzitě); univerzita vrátí platby z konta.</td></tr>
+      <tr><td>Groq nebo Google AI Studio</td><td>Jen když zadáš vlastní API klíč</td><td>K zařazení plateb popis, částka a protistrana – <strong>čísla účtů, IBAN a čísla karet se předem vypouštějí</strong>; k seřazení úkolů jejich názvy. Řídí se podmínkami zvoleného poskytovatele a tvým klíčem.</td></tr>
+      <tr><td>Google Kalendář</td><td>Když propojení povolíš</td><td>Úkoly se zapisují jako události do samostatného kalendáře aplikace; ostatní kalendáře aplikace nečte.</td></tr>
+      <tr><td>OpenStreetMap</td><td>Když otevřeš mapu trasy</td><td>Žádost o dlaždice mapy dané oblasti (server tím vidí oblast a tvoji IP adresu, ne trasu).</td></tr>
+    </tbody>
+  </table>
+  <p>Veškerá komunikace je šifrovaná (HTTPS, TLS 1.2 a novější); u banky, ISKAMu a AI aplikace
+    navíc ověřuje, že certifikát serveru je zapsaný ve veřejných logách Certificate Transparency.</p>
+
+  <h2>Proč a na jakém základě</h2>
+  <p>Údaje se zpracovávají jen proto, aby aplikace mohla dělat to, co od ní chceš
+    (plnění smlouvy – čl. 6 odst. 1 písm. b GDPR). Zdravotní údaje aplikace čte jen
+    s tvým výslovným souhlasem v systémovém dialogu (čl. 9 odst. 2 písm. a GDPR), který
+    můžeš kdykoliv odvolat v nastavení Health Connect nebo Apple Zdraví. Hlášení o pádech
+    slouží k opravám chyb (oprávněný zájem – čl. 6 odst. 1 písm. f GDPR).</p>
+
+  <h2>Jak dlouho</h2>
+  <ul>
+    <li>Data v telefonu: dokud je nesmažeš nebo neodinstaluješ aplikaci.</li>
+    <li>Data v cloudu: dokud nesmažeš účet.</li>
+    <li>Hlášení o pádech: 90 dní (Firebase Crashlytics).</li>
+  </ul>
+
+  <h2>Smazání účtu a dat</h2>
+  <p>V aplikaci: <strong>Profil → Účet → Smazat účet</strong>. Smaže se účet i všechna data v cloudu.
+    Data v telefonu smažeš odinstalováním aplikace. Podrobný postup a možnost požádat o smazání
+    e-mailem: <a href="smazani-uctu.html">Smazání účtu a dat</a>.</p>
+
+  <h2>Tvoje práva</h2>
+  <p>Máš právo na přístup ke svým údajům, jejich opravu, výmaz, omezení zpracování,
+    přenositelnost (záloha z Profilu je soubor ve strojově čitelném formátu JSON)
+    a odvolání souhlasu. Stačí napsat na
+    <a href="mailto:adamn.developer@gmail.com">adamn.developer@gmail.com</a>.
+    Stížnost můžeš podat u Úřadu pro ochranu osobních údajů (<a href="https://uoou.gov.cz">uoou.gov.cz</a>).</p>
+
+  <h2>Děti</h2>
+  <p>Aplikace není určená dětem mladším 16 let.</p>
+
+  <h2>Změny</h2>
+  <p>Když se zásady změní, nová verze se objeví na téhle stránce s novým datem platnosti.</p>
+
+  <footer>ANCORE · <a href="smazani-uctu.html">Smazání účtu</a></footer>
+</main>
+</body>
+</html>

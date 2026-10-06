@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smazání účtu – ANCORE</title>
+  <meta name="description" content="Jak smazat účet ANCORE a všechna data v cloudu.">
+  <link rel="stylesheet" href="styl.css">
+</head>
+<body>
+<main>
+  <header>
+    <a href="index.html">ANCORE</a>
+    <h1>Smazání účtu a dat</h1>
+    <p class="muted">Aplikace ANCORE – vývojář Adam Nechvátal</p>
+  </header>
+
+  <section class="card">
+    <h2>V aplikaci (nejrychlejší)</h2>
+    <ol>
+      <li>Otevři ANCORE a jdi do <strong>Profil → Účet</strong>.</li>
+      <li>Klepni na <strong>Smazat účet</strong> a potvrď.</li>
+      <li>Pokud od přihlášení uběhlo víc než pár minut, aplikace tě požádá o nové
+        přihlášení – je to pojistka proti tomu, kdo by vzal tvůj odemčený telefon.
+        Odhlas se, přihlas se znovu a smazání zopakuj.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>E-mailem (bez aplikace)</h2>
+    <p>Napiš z e-mailu, pod kterým máš účet, na
+      <a href="mailto:adamn.developer@gmail.com?subject=Smaz%C3%A1n%C3%AD%20%C3%BA%C4%8Dtu%20ANCORE">adamn.developer@gmail.com</a>
+      s předmětem <em>Smazání účtu ANCORE</em>. Účet i data smažu do 30 dní a potvrdím ti to.</p>
+  </section>
+
+  <h2>Co se smaže</h2>
+  <ul>
+    <li>Účet ve Firebase Authentication (e-mail, přihlášení Googlem).</li>
+    <li>Všechna data účtu v cloudu: platby a oblasti výdajů, návyky, odpočty „Since", úkoly,
+      citáty, tréninky a plány, semestry, Nové Já a sebereflexe.</li>
+  </ul>
+
+  <h2>Co zůstane</h2>
+  <ul>
+    <li><strong>Data v telefonu</strong> – aplikace funguje i bez účtu. Smažeš je odinstalováním
+      aplikace (nebo v nastavení telefonu: Aplikace → ANCORE → Úložiště → Vymazat data).</li>
+    <li><strong>Hlášení o pádech</strong> (Firebase Crashlytics) – nejsou spojená s účtem a samy
+      se mažou po 90 dnech.</li>
+    <li>Události v kalendáři „ANCORE" ve tvém Google Kalendáři – patří tvému účtu Google,
+      smažeš je spolu s tím kalendářem.</li>
+  </ul>
+
+  <footer>ANCORE · <a href="zasady-ochrany-osobnich-udaju.html">Zásady ochrany osobních údajů</a></footer>
+</main>
+</body>
+</html>
